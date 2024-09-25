@@ -1,20 +1,21 @@
 const dropdownButton = document.querySelector(".dropdown-button");
+const dropdownText = document.querySelector(".dropdown-text");
 const dropdownMenu = document.querySelector(".dropdown-menu");
-const dropdownItems = document.querySelectorAll(".dropdown-item");
+const dropdownArrow = document.querySelector(".dropdown-arrow");
+
 let selectedItem = null;
 let previousSelectedItem = null;
 
-const toggleDropdown = () => {
-  dropdownButton.addEventListener("click", () => {
-    dropdownMenu.classList.toggle("show");
-  });
+const toggleDropdownMenu = () => {
+  dropdownMenu.classList.toggle("show");
+  dropdownArrow.classList.toggle("rotate");
 };
 
 const selectItem = (event) => {
   previousSelectedItem = selectedItem;
   selectedItem = event.target;
-  dropdownButton.textContent = selectedItem.textContent;
-  dropdownMenu.classList.remove("show");
+  dropdownText.textContent = selectedItem.textContent;
+  toggleDropdownMenu();
   selectedItemIconToggle();
 };
 
@@ -34,5 +35,4 @@ const selectedItemIconToggle = () => {
 };
 
 dropdownMenu.addEventListener("click", selectItem);
-
-toggleDropdown();
+dropdownButton.addEventListener("click", toggleDropdownMenu);
